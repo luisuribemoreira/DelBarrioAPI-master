@@ -1,0 +1,63 @@
+{
+  "name": "apidelbarrio",
+  "version": "1.0.0",
+  "description": "Aplicación API con Express, Bookshelf.js y PG bajo NodeJS",
+  "main": "main.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "mocha --compilers js:babel-register",
+    "test:watch": "mocha --watch --compilers js:babel-register",
+    "eslint": "eslint --ext .js ./",
+    "migrate:run": "knex migrate:latest",
+    "migrate:clean": "knex migrate:rollback",
+    "seed": "knex seed:run"
+  },
+  "repository": {},
+  "keywords": [
+    "nodejs",
+    "node",
+    "api",
+    "APIREST"
+  ],
+  "author": "S. Barrenechea, R. Jara",
+  "license": "MIT",
+  "bugs": {},
+  "homepage": "",
+  "dependencies": {
+    "axios": "^0.16.2",
+    "babel-cli": "^6.24.1",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-es2017": "^6.24.1",
+    "babel-register": "^6.24.1",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.17.2",
+    "bookshelf": "^0.10.4",
+    "checkit": "^0.7.0",
+    "cors": "^2.8.4",
+    "express": "^4.15.3",
+    "fs": "^0.0.1-security",
+    "install": "^0.10.1",
+    "jsonwebtoken": "^8.1.0",
+    "knex": "^0.13.0",
+    "lodash": "^4.17.4",
+    "moment": "^2.19.2",
+    "morgan": "^1.8.2",
+    "multer": "^1.3.0",
+    "nodemon": "^1.11.0",
+    "omit-deep": "^0.3.0",
+    "passport": "^0.4.0",
+    "passport-jwt": "^3.0.1",
+    "path": "^0.12.7",
+    "pg": "^7.4.0",
+    "rotating-file-stream": "^1.3.0",
+    "simple-express-logger": "^2.0.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.0.2",
+    "chai": "^4.1.2",
+    "chai-http": "^2.0.1",
+    "eslint": "^4.11.0",
+    "mocha": "^3.5.3"
+  }
+}
