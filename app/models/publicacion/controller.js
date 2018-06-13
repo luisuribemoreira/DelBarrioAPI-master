@@ -75,15 +75,13 @@ function GET (req, res) {
  */
 function GETAllHelper (ids = undefined, page = 1) {
   if(ids) {
-    return new Model().query(q => { q.where('IDEN_PUBLICACION', 'in', ids) }).orderBy('IDEN_PUBLICACION', 'desc').fetchPage({page: page, pageSize: 18, withRelated: ['categoria', 'oferta', 'calificaciones', {'imagenes': query => {
-      query.orderBy('IDEN_IMAGEN')
-    }}
+    return new Model().query(q => { q.where('IDEN_PUBLICACION', 'in', ids) }).orderBy('IDEN_PUBLICACION', 'desc').fetchPage({page: page, pageSize: 18, withRelated: ['categoria', 'oferta', 'calificaciones', 
+    {'comentarios': query => { query.orderBy('IDEN_COMENTARIO')}} ,{'imagenes': query => {query.orderBy('IDEN_IMAGEN')}}, 'comentarios.respuesta'
     ]})
   }
-
+  
   return new Collection().orderBy('IDEN_PUBLICACION').fetchPage({page: page, pageSize: 18, withRelated: ['categoria', 'oferta', 'calificaciones', {'imagenes': query => {
-    query.orderBy('IDEN_IMAGEN')
-  }}
+    query.orderBy('IDEN_IMAGEN')}}, {'comentarios': query => { query.orderBy('IDEN_COMENTARIO')}}, 'comentarios.respuesta'
   ]})
 }
 
