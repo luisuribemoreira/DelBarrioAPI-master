@@ -21,7 +21,7 @@ function GET (req, res) {
         throw err
       })
   } else {
-    new Collection().fetch()
+    new Collection().fetch({withRelated: ['respuesta']})
       .then(entities => {
         res.json({error: false, data: entities.toJSON()})
       }).catch(err => {
