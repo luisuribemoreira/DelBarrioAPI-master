@@ -31,7 +31,8 @@ function GET (req, res) {
           res.status(404).json({error: true, data: {message: 'Entity not found'}})
         } else {
           let jsonEntity = entity.toJSON()
-          jsonEntity.NUMR_CALIFICACION = jsonEntity.calificaciones.length >= 5 ? _.meanBy(jsonEntity.calificaciones, e => { return e.NUMR_VALOR }) : 0
+                jsonEntity.NUMR_CALIFICACION = 
+                jsonEntity.calificaciones.length >= 5 ? _.meanBy(jsonEntity.calificaciones, e => { if (!e.flag_ban) return e.NUMR_VALOR }) : 0
           res.json({error: false, data: jsonEntity})
           // Incrementar contador
           new Model({IDEN_PUBLICACION: entity.attributes.IDEN_PUBLICACION})
