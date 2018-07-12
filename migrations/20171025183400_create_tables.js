@@ -7,6 +7,7 @@ exports.up = function (knex) {
     .then(createPerRubros)
     .then(createPerEmprendedores)
     .then(createPerPersonas)
+    .then(createPerContactos)
     .then(createReqCategorias)
     .then(createReqPublicaciones)
     .then(createReqImagenes)
@@ -22,6 +23,7 @@ exports.up = function (knex) {
     .then(createReqFaq)
     .then(createReqMotivosDeshabilitacion)
     .then(createReqDeshabilitacionesCuentas)
+    
 
   function createSisRoles () {
     return knex.schema.createTableIfNotExists('SIS_ROLES', table => {
@@ -109,6 +111,17 @@ exports.up = function (knex) {
       table.date('FECH_FECHA_NACIMIENTO').notNull()
 
       table.foreign('IDEN_USUARIO').references('USR_USUARIOS.IDEN_USUARIO').onDelete('CASCADE').onUpdate('CASCADE')
+    })
+  }
+
+  function createPerContactos () {
+    return knex.schema.createTableIfNotExists('PER_CONTACTOS', table => {
+      table.increments('IDEN_CONTACTO').unsigned().primary()
+      table.integer('IDEN_PERSONA').unsigned().notNull()
+      table.string('TIPO_CONTACTO').notNull()
+      table.string('DESC_CONTACTO').notNull()
+      
+      table.foreign('IDEN_PERSONA').references('PER_PERSONAS.IDEN_PERSONA').onDelete('CASCADE').onUpdate('CASCADE')
     })
   }
 
@@ -318,6 +331,7 @@ exports.down = function (knex) {
     .dropTableIfExists('PER_EMPRENDEDORES')
     .dropTableIfExists('PER_RUBROS')
     .dropTableIfExists('PER_TELEFONOS')
+    .dropTableIfExists('PER_CONTACTOS')
     .dropTableIfExists('USR_USUARIOS')
     .dropTableIfExists('SIS_PERMISOS_ROLES')
     .dropTableIfExists('SIS_PERMISOS')
