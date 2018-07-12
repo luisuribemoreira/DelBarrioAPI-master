@@ -50,10 +50,31 @@ exports.seed = function (knex) {
               return knex('PER_PERSONAS').insert([
                 // Cliente
                 {IDEN_USUARIO: usuarios.find(usuario => usuario.EMAIL_USUARIO === 'cliente@test.com').IDEN_USUARIO, NOMBRES: 'Luis Alberto', APELLIDO_PATERNO: 'Jara', APELLIDO_MATERNO: 'Cantillana', FECH_FECHA_NACIMIENTO: '1965-10-25T00:00:00.000Z'},
+                // Emprendedor
+                {IDEN_USUARIO: usuarios.find(usuario => usuario.EMAIL_USUARIO === 'emprendedor@test.com').IDEN_USUARIO, NOMBRES: 'Maria Joaquina', APELLIDO_PATERNO: 'Diaz', APELLIDO_MATERNO: 'Gonzalez', FECH_FECHA_NACIMIENTO: '1977-08-14T00:00:00.000Z'},
                 // Administrador
                 {IDEN_USUARIO: usuarios.find(usuario => usuario.EMAIL_USUARIO === 'admin@test.com').IDEN_USUARIO, NOMBRES: 'John', APELLIDO_PATERNO: 'Jackson', APELLIDO_MATERNO: 'Perez', FECH_FECHA_NACIMIENTO: '1901-12-03T00:00:00.000Z'},
                 // Super Administrador
                 {IDEN_USUARIO: usuarios.find(usuario => usuario.EMAIL_USUARIO === 'superadmin@test.com').IDEN_USUARIO, NOMBRES: 'Jack', APELLIDO_PATERNO: 'Johnson', APELLIDO_MATERNO: 'López', FECH_FECHA_NACIMIENTO: '1867-01-03T00:00:00.000Z'},
+              ])
+            })
+        })
+        .then(() => {
+          return knex.select('IDEN_PERSONA', 'EMAIL_USUARIO').from('PER_PERSONAS').leftJoin('USR_USUARIOS', 'PER_PERSONAS.IDEN_USUARIO', 'USR_USUARIOS.IDEN_USUARIO')
+            .then(personas => {
+              return knex('PER_CONTACTOS').insert([
+                // Teléfonos Cliente
+                {IDEN_PERSONA: personas.find(persona => persona.EMAIL_USUARIO === 'cliente@test.com').IDEN_PERSONA, TIPO_CONTACTO: 'Telefono', DESC_CONTACTO: '+56 2 2345 6789'},
+                {IDEN_PERSONA: personas.find(persona => persona.EMAIL_USUARIO === 'cliente@test.com').IDEN_PERSONA, TIPO_CONTACTO: 'Telefono', DESC_CONTACTO: '+56 9 8765 4321'},
+                // Teléfonos Emprendedor
+                {IDEN_PERSONA: personas.find(persona => persona.EMAIL_USUARIO === 'emprendedor@test.com').IDEN_PERSONA, TIPO_CONTACTO: 'Telefono', DESC_CONTACTO: '+56 2 2876 5432'},
+                {IDEN_PERSONA: personas.find(persona => persona.EMAIL_USUARIO === 'emprendedor@test.com').IDEN_PERSONA, TIPO_CONTACTO: 'Telefono', DESC_CONTACTO: '+56 9 6654 0124'},
+                // Teléfonos Administrador
+                {IDEN_PERSONA: personas.find(persona => persona.EMAIL_USUARIO === 'admin@test.com').IDEN_PERSONA, TIPO_CONTACTO: 'Telefono', DESC_CONTACTO: '+56 2 2654 1141'},
+                {IDEN_PERSONA: personas.find(persona => persona.EMAIL_USUARIO === 'admin@test.com').IDEN_PERSONA, TIPO_CONTACTO: 'Telefono', DESC_CONTACTO: '+56 9 9463 2101'},
+                // Teléfonos Super Administrador
+                {IDEN_PERSONA: personas.find(persona => persona.EMAIL_USUARIO === 'superadmin@test.com').IDEN_PERSONA, TIPO_CONTACTO: 'Telefono', DESC_CONTACTO: '+56 2 2741 0041'},
+                {IDEN_PERSONA: personas.find(persona => persona.EMAIL_USUARIO === 'superadmin@test.com').IDEN_PERSONA, TIPO_CONTACTO: 'Telefono', DESC_CONTACTO: '+56 9 9974 2409'}
               ])
             })
         })
