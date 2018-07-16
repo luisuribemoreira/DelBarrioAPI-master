@@ -38,7 +38,7 @@ function GET (req, res) {
  * @param {string} req.body.DESC_PASSWORD - Contraseña del usuario (en texto plano).
  * @param {boolean} req.body.FLAG_VIGENTE - Define si el usuario está activo (opcional, por defecto true).
  * @param {boolean} req.body.FLAG_BAN - Define si el usuario está baneado (opcional, por defecto false).
- * @param {date} req.body.FECH_CREACION - Fecha de creación del usuario (opcional, por defecto now()).
+ * @param {date} req.body.FECH_CREACION - Fecha de creación del usuario (opcional).
  * @return {json} Usuario. En caso fallido, mensaje de error.
  */
 function POST (req, res) {
@@ -67,7 +67,7 @@ function POST (req, res) {
  * @param {string} req.body.DESC_PASSWORD - Contraseña del usuario (opcional, en texto plano).
  * @param {boolean} req.body.FLAG_VIGENTE - Define si el usuario está activo (opcional).
  * @param {boolean} req.body.FLAG_BAN - Define si el usuario está baneado (opcional).
- * @param {date} req.body.FECH_CREACION - Fecha de creación del usuario (opcional, por defecto now()).
+ * @param {date} req.body.FECH_CREACION - Fecha de creación del usuario (opcional).
  * @return {json} Mensaje de éxito o error.
  */
 function PUT (req, res) {

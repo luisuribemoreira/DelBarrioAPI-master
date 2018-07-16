@@ -8,10 +8,10 @@ exports.seed = function (knex) {
       return knex.select('IDEN_ROL', 'CODI_ROL').from('SIS_ROLES')
         .then(roles => {
           return knex('USR_USUARIOS').insert([
-            {IDEN_ROL: roles.find(rol => rol.CODI_ROL === 101).IDEN_ROL, EMAIL_USUARIO: 'cliente@test.com', DESC_PASSWORD: hash.genHash('cliente'), FLAG_VIGENTE: true},
-            {IDEN_ROL: roles.find(rol => rol.CODI_ROL === 102).IDEN_ROL, EMAIL_USUARIO: 'emprendedor@test.com', DESC_PASSWORD: hash.genHash('emprendedor'), FLAG_VIGENTE: true},
-            {IDEN_ROL: roles.find(rol => rol.CODI_ROL === 103).IDEN_ROL, EMAIL_USUARIO: 'admin@test.com', DESC_PASSWORD: hash.genHash('admin'), FLAG_VIGENTE: true},
-            {IDEN_ROL: roles.find(rol => rol.CODI_ROL === 104).IDEN_ROL, EMAIL_USUARIO: 'superadmin@test.com', DESC_PASSWORD: hash.genHash('superadmin'), FLAG_VIGENTE: true}
+            {IDEN_ROL: roles.find(rol => rol.CODI_ROL === 101).IDEN_ROL, EMAIL_USUARIO: 'cliente@test.com', DESC_PASSWORD: hash.genHash('cliente'), FLAG_VIGENTE: true, FECH_CREACION: knex.raw(now())},
+            {IDEN_ROL: roles.find(rol => rol.CODI_ROL === 102).IDEN_ROL, EMAIL_USUARIO: 'emprendedor@test.com', DESC_PASSWORD: hash.genHash('emprendedor'), FLAG_VIGENTE: true, FECH_CREACION: knex.raw(now())},
+            {IDEN_ROL: roles.find(rol => rol.CODI_ROL === 103).IDEN_ROL, EMAIL_USUARIO: 'admin@test.com', DESC_PASSWORD: hash.genHash('admin'), FLAG_VIGENTE: true, FECH_CREACION: knex.raw(now())},
+            {IDEN_ROL: roles.find(rol => rol.CODI_ROL === 104).IDEN_ROL, EMAIL_USUARIO: 'superadmin@test.com', DESC_PASSWORD: hash.genHash('superadmin'), FLAG_VIGENTE: true, FECH_CREACION: knex.raw(now())}
           ])
         })
         .then(() => {
