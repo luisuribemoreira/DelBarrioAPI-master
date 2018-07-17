@@ -32,7 +32,7 @@ function GET (req, res) {
 }
 
 /**
- * Agregar nuevo teléfono.
+ * Agregar nuevo contácto.
  * @param {string} req.body.TIPO_CONTACTO - Tipo de contácto.
  * @param {string} req.body.DESC_CONTACTO - Descripción del contácto.
  * @param {integer} req.body.IDEN_PERSONA - ID de la persona dueña del contácto.
@@ -40,8 +40,8 @@ function GET (req, res) {
  */
 function POST (req, res) {
   new Model({
-    TIPO_CONTACTO:    req.body.TIPO_CONTACTO,
-    DESC_CONTACTO:    req.body.DESC_CONTACTO,
+    TIPO_CONTACTO: req.body.TIPO_CONTACTO,
+    DESC_CONTACTO: req.body.DESC_CONTACTO,
     IDEN_PERSONA: req.body.IDEN_PERSONA
   }).save()
     .then(entity => {
@@ -55,7 +55,7 @@ function POST (req, res) {
 }
 
 /**
- * Actualiza un teléfono.
+ * Actualiza un contácto.
  * @param {integer} req.params.id - ID de contácto.
  * @param {string} req.body.TIPO_CONTACTO - Tipo de contácto.
  * @param {string} req.body.DESC_CONTACTO - Descripción del contácto.
