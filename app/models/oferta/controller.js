@@ -9,7 +9,7 @@ import Checkit from 'checkit'
 function GET (req, res) {
   const id = (typeof req.params.id === 'undefined' || isNaN(req.params.id) ) ? 0 : parseInt(req.params.id)
   if(id != 0) {
-    new Model({IDEN_OFERTA: id}).fetch({withRelated: ['publicacion']})
+    new Model({IDEN_OFERTA: id}).fetch({withRelated: ['publicacion','publicacion.categoria']})
       .then(entity => {
         if(!entity) {
           res.status(404).json({error: true, data: {message: 'Entity not found'}})
@@ -21,7 +21,7 @@ function GET (req, res) {
         throw err
       })
   } else {
-    new Collection().fetch({withRelated: ['publicacion']})
+    new Collection().fetch({withRelated: ['publicacion','publicacion.categoria']})
       .then(entities => {
         res.json({error: false, data: entities.toJSON()})
       }).catch(err => {
@@ -37,6 +37,8 @@ function GET (req, res) {
  * @param {datetime} req.body.FECH_INICIO - Fecha de inicio de la oferta.
  * @param {datetime} req.body.FECH_TERMINO - Fecha de término de la oferta.
  * @param {integer} req.body.NUMR_PRECIO - Precio de la oferta.
+ * @param {boolean} req.body.FLAG_VALIDADO - Define si la oferta ha sido aprobada por un administrador (opcional, por defecto false).
+ * @param {boolean} req.body.FLAG_BAN - Define si la oferta está baneada (opcional, por defecto false).
  * @return {json} Oferta. En caso fallido, mensaje de error.
  */
 function POST (req, res) {
@@ -44,7 +46,9 @@ function POST (req, res) {
     IDEN_PUBLICACION: req.body.IDEN_PUBLICACION,
     FECH_INICIO:      req.body.FECH_INICIO,
     FECH_TERMINO:     req.body.FECH_TERMINO,
-    NUMR_PRECIO:      req.body.NUMR_PRECIO
+    NUMR_PRECIO:      req.body.NUMR_PRECIO,
+    FLAG_VALIDADO:          req.body.FLAG_VALIDADO,
+    FLAG_BAN:               req.body.FLAG_BAN
   }).save()
     .then(entity => {
       res.json({error: false, data: entity.toJSON()})
@@ -63,6 +67,8 @@ function POST (req, res) {
  * @param {datetime} req.body.FECH_INICIO - Fecha de inicio de la oferta (opcional).
  * @param {datetime} req.body.FECH_TERMINO - Fecha de término de la oferta (opcional).
  * @param {integer} req.body.NUMR_PRECIO - Precio de la oferta (opcional).
+ * @param {boolean} req.body.FLAG_VALIDADO - Define si la oferta ha sido aprobada por un administrador (opcional, por defecto false).
+ * @param {boolean} req.body.FLAG_BAN - Define si la oferta está baneada (opcional, por defecto false).
  * @return {json} Mensaje de éxito o error.
  */
 function PUT (req, res) {
@@ -73,7 +79,9 @@ function PUT (req, res) {
         IDEN_PUBLICACION: (typeof req.body.IDEN_PUBLICACION === 'undefined') ? entity.get('IDEN_PUBLICACION') : req.body.IDEN_PUBLICACION,
         FECH_INICIO:      (typeof req.body.FECH_INICIO === 'undefined') ? entity.get('FECH_INICIO') : req.body.FECH_INICIO,
         FECH_TERMINO:     (typeof req.body.FECH_TERMINO === 'undefined') ? entity.get('FECH_TERMINO') : req.body.FECH_TERMINO,
-        NUMR_PRECIO:      (typeof req.body.NUMR_PRECIO === 'undefined') ? entity.get('NUMR_PRECIO') : req.body.NUMR_PRECIO
+        NUMR_PRECIO:      (typeof req.body.NUMR_PRECIO === 'undefined') ? entity.get('NUMR_PRECIO') : req.body.NUMR_PRECIO,
+        FLAG_VALIDADO:    (typeof req.body.FLAG_VALIDADO === 'undefined') ? entity.get('FLAG_VALIDADO') : req.body.FLAG_VALIDADO,
+        FLAG_BAN:         (typeof req.body.FLAG_BAN === 'undefined') ? entity.get('FLAG_BAN') : req.body.FLAG_BAN
       })
         .then(() => {
           res.json({error: false, data: {message: 'Entity successfully updated'}})
