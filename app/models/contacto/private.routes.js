@@ -4,6 +4,7 @@ import permit from '../../middlewares/permission'
 const app = express.Router()
 
 app.route('/contacto/:id([0-9]+)?')
+  .get    ((req, res) => controller.GETByPersona(req, res))
   .post   ((req,res) => controller.POST(req, res)) // Heredar 206, 207, 208
   .put    ((req,res) => controller.PUT(req, res)) // Heredar 206, 207, 208
   .delete (permit(303), (req,res) => controller.DELETE(req, res))

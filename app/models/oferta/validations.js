@@ -6,7 +6,8 @@ const labels = {
   IDEN_PUBLICACION: 'ID de publicación',
   FECH_INICIO: 'Fecha de inicio',
   FECH_TERMINO: 'Fecha de término',
-  NUMR_PRECIO: 'Precio de oferta'
+  NUMR_PRECIO: 'Precio de oferta',
+  FLAG_BAN: 'Baneo'
 }
 
 // Valores nativos de validaciones Checkit en https://github.com/tgriesser/checkit
@@ -48,6 +49,11 @@ const validations = {
     rule: 'lessThanEqualTo:2000000000',
     label: labels.NUMR_PRECIO
   }],
+  FLAG_BAN: [{
+    rule: 'boolean',
+    label: labels.FLAG_BAN
+  }]
+  
 }
 
 /**

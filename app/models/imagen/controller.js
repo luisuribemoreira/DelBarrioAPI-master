@@ -135,10 +135,10 @@ function PUT (req, res) {
           let newUrl
           deleteFile(entity.attributes.URL_IMAGEN)
           if(req.files.avatar) {
-            newUrl = req.files.avatar[0].destination + req.files.avatar[0].filename
+            newUrl = 'img/' + req.files.avatar[0].filename
           }
           else if(req.files.gallery) {
-            newUrl = req.files.gallery[0].destination + req.files.gallery[0].filename
+            newUrl = 'img/' + req.files.gallery[0].filename
           }
           entity.save({
             URL_IMAGEN: (typeof newUrl === 'undefined') ? entity.get('URL_IMAGEN') : newUrl

@@ -177,6 +177,8 @@ exports.up = function (knex) {
       table.dateTime('FECH_INICIO').notNull()
       table.dateTime('FECH_TERMINO').notNull()
       table.integer('NUMR_PRECIO').unsigned().notNull()
+      table.boolean('FLAG_VALIDADO').notNull().defaultTo(false)
+      table.boolean('FLAG_BAN').notNull().defaultTo(false)
 
       table.foreign('IDEN_PUBLICACION').references('REQ_PUBLICACIONES.IDEN_PUBLICACION').onDelete('CASCADE').onUpdate('CASCADE')
     })

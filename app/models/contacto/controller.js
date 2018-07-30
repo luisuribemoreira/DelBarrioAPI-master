@@ -32,6 +32,26 @@ function GET (req, res) {
 }
 
 /**
+ * Obtener contáctos por persona.
+ * @param {integer} req.params.id - ID de persona.
+ * @return {json} contácto(s). En caso fallido, mensaje de error.
+ */
+function GETByPersona (req, res) {
+  const id = (typeof req.params.id === 'undefined' || isNaN(req.params.id) ) ? 0 : parseInt(req.params.id)
+  new Model({IDEN_PERSONA: id}).where({IDEN_PERSONA: id}).fetchAll()
+    .then(entity => {
+      if(!entity) {
+        res.status(404).json({error: true, data: {message: 'Entity not found'}})
+      } else {
+        res.json({error: false, data: entity.toJSON()})
+      }
+    }).catch(err => {
+      res.status(500).json({error: true, data: {message: 'Internal error'}})
+      throw err
+    })
+}
+
+/**
  * Agregar nuevo contácto.
  * @param {string} req.body.TIPO_CONTACTO - Tipo de contácto.
  * @param {string} req.body.DESC_CONTACTO - Descripción del contácto.
@@ -57,9 +77,9 @@ function POST (req, res) {
 /**
  * Actualiza un contácto.
  * @param {integer} req.params.id - ID de contácto.
- * @param {string} req.body.TIPO_CONTACTO - Tipo de contácto.
- * @param {string} req.body.DESC_CONTACTO - Descripción del contácto.
- * @param {integer} req.body.IDEN_PERSONA - ID de la persona dueña del contácto.
+ * @param {string} req.body.TIPO_CONTACTO - Tipo de contácto. (opcional)
+ * @param {string} req.body.DESC_CONTACTO - Descripción del contácto. (opcional)
+ * @param {integer} req.body.IDEN_PERSONA - ID de la persona dueña del contácto. (opcional)
  * @return {json} Mensaje de éxito o error.
  */
 function PUT (req, res) {
@@ -112,6 +132,7 @@ function DELETE (req, res) {
 /* Se exportan los métodos */
 module.exports = {
   GET,
+  GETByPersona,
   POST,
   PUT,
   DELETE
