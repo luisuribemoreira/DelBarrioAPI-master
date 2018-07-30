@@ -80,7 +80,7 @@ function POST (req, res) {
                 tempModelAttributes.push(
                   {
                     IDEN_EMPRENDEDOR: req.body.IDEN_EMPRENDEDOR ? parseInt(req.body.IDEN_EMPRENDEDOR) : undefined,
-                    URL_IMAGEN: file.destination + file.filename
+                    URL_IMAGEN: 'img/' + file.filename
                   }
                 )
               })
@@ -90,7 +90,7 @@ function POST (req, res) {
                 tempModelAttributes.push(
                   {
                     IDEN_PUBLICACION: req.body.IDEN_PUBLICACION ? parseInt(req.body.IDEN_PUBLICACION) : undefined,
-                    URL_IMAGEN: file.destination + file.filename
+                    URL_IMAGEN: 'img/' + file.filename
                   }
                 )
               })
