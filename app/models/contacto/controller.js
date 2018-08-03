@@ -49,6 +49,8 @@ function GETByPersona (req, res) {
           if (!dataObject[contacto.TIPO_CONTACTO]) {
             dataObject[contacto.TIPO_CONTACTO] = []
             dataObject[contacto.TIPO_CONTACTO].push(contacto)
+          } else {
+            dataObject[contacto.TIPO_CONTACTO].push(contacto)
           }
         })
         res.json({error: false, data: dataObject})
