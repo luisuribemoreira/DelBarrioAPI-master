@@ -43,7 +43,15 @@ function GETByPersona (req, res) {
       if(!entity) {
         res.status(404).json({error: true, data: {message: 'Entity not found'}})
       } else {
-        res.json({error: false, data: entity.toJSON()})
+        let dataObject = {}
+        let dataArray = entity.toJSON()
+        dataArray.forEach(contacto => {
+          if (!dataObject[contacto.TIPO_CONTACTO]) {
+            dataObject[contacto.TIPO_CONTACTO] = []
+            dataObject[contacto.TIPO_CONTACTO].push(contacto)
+          }
+        })
+        res.json({error: false, data: dataObject})
       }
     }).catch(err => {
       res.status(500).json({error: true, data: {message: 'Internal error'}})
