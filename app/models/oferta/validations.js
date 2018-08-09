@@ -7,7 +7,8 @@ const labels = {
   FECH_INICIO: 'Fecha de inicio',
   FECH_TERMINO: 'Fecha de término',
   NUMR_PRECIO: 'Precio de oferta',
-  FLAG_BAN: 'Baneo'
+  FLAG_BAN: 'Baneo',
+  FLAG_VIGENTE: 'Activa'
 }
 
 // Valores nativos de validaciones Checkit en https://github.com/tgriesser/checkit
@@ -52,6 +53,10 @@ const validations = {
   FLAG_BAN: [{
     rule: 'boolean',
     label: labels.FLAG_BAN
+  }],
+  FLAG_VIGENTE: [{
+    rule: 'boolean',
+    label: labels.FLAG_VIGENTE
   }]
   
 }
