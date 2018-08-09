@@ -7,6 +7,9 @@ import cn from './config'
 import passport from 'passport'
 import strategy from './app/middlewares/jwt-strategie'
 
+// SCHEDULED TASKS
+import tasks from './scheduledtasks'
+
 //LOG
 import logger from 'simple-express-logger'
 import fs from 'fs' 
