@@ -9,7 +9,7 @@ import Checkit from 'checkit'
 function GET (req, res) {
   const id = (typeof req.params.id === 'undefined' || isNaN(req.params.id) ) ? 0 : parseInt(req.params.id)
   if(id != 0) {
-    new Model({IDEN_USUARIO: id}).fetch({withRelated: ['telefonos', 'persona', 'emprendedor']})
+    new Model({IDEN_USUARIO: id}).fetch({withRelated: ['telefonos', 'persona', 'emprendedor', 'emprendedor.imagen']})
       .then(entity => {
         if(!entity) {
           res.status(404).json({error: true, data: {message: 'Entity not found'}})
