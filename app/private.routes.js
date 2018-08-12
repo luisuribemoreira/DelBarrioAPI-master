@@ -19,6 +19,7 @@ import routesTerminosCondiciones from './models/terminos_condiciones/private.rou
 import routesDenuncia from './models/denuncia/private.routes'
 import routesResolucionDenuncia from './models/resolucion_denuncia/private.routes'
 import routesContacto from './models/contacto/private.routes'
+import routesDeshabilitacion from './models/deshabilitacion_cuenta/private.routes'
 
 import specificRoutes from './specific/private.routes'
 
@@ -44,6 +45,7 @@ const routes = [
   routesDenuncia,
   routesResolucionDenuncia,
   routesContacto,
+  routesDeshabilitacion,
   specificRoutes
 ]
 
