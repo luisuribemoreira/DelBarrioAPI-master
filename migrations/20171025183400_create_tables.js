@@ -306,7 +306,8 @@ exports.up = function (knex) {
       table.integer('IDEN_USUARIO').unsigned().notNull()
       table.integer('IDEN_MOTIVO_DESHABILITACION').unsigned().notNull()
       table.string('DESC_COMENTARIO').notNull()
-      table.dateTime('FECH_CREACION').notNull().defaultTo(knex.raw('now()'))
+      table.dateTime('FECH_CREACION').notNull().defaultTo(knex.raw('now()')),
+      table.boolean('FLAG_VIGENTE').notNull().defaultTo(true)
 
       table.foreign('IDEN_USUARIO').references('USR_USUARIOS.IDEN_USUARIO').onDelete('CASCADE').onUpdate('CASCADE')
       table.foreign('IDEN_MOTIVO_DESHABILITACION').references('REQ_MOTIVOS_DESHABILITACION.IDEN_MOTIVO_DESHABILITACION').onDelete('CASCADE').onUpdate('CASCADE')
