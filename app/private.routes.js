@@ -22,6 +22,7 @@ import routesContacto from './models/contacto/private.routes'
 import routesDeshabilitacion from './models/deshabilitacion_cuenta/private.routes'
 
 import specificRoutes from './specific/private.routes'
+import emailRoute from './specific/emailer'
 
 const routes = [
   routesInicio,
@@ -46,7 +47,8 @@ const routes = [
   routesResolucionDenuncia,
   routesContacto,
   routesDeshabilitacion,
-  specificRoutes
+  specificRoutes,
+  emailRoute
 ]
 
 export default routes
