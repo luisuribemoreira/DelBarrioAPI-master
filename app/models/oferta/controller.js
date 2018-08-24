@@ -39,6 +39,7 @@ function GET (req, res) {
  * @param {integer} req.body.NUMR_PRECIO - Precio de la oferta.
  * @param {boolean} req.body.FLAG_VALIDADO - Define si la oferta ha sido aprobada por un administrador (opcional, por defecto false).
  * @param {boolean} req.body.FLAG_BAN - Define si la oferta está baneada (opcional, por defecto false).
+ * @param {boolean} req.body.FLAG_VIGENTE - Define si la oferta está vigente (opcional, por defecto true).
  * @return {json} Oferta. En caso fallido, mensaje de error.
  */
 function POST (req, res) {
@@ -47,8 +48,9 @@ function POST (req, res) {
     FECH_INICIO:      req.body.FECH_INICIO,
     FECH_TERMINO:     req.body.FECH_TERMINO,
     NUMR_PRECIO:      req.body.NUMR_PRECIO,
-    FLAG_VALIDADO:          req.body.FLAG_VALIDADO,
-    FLAG_BAN:               req.body.FLAG_BAN
+    FLAG_VALIDADO:    req.body.FLAG_VALIDADO,
+    FLAG_BAN:         req.body.FLAG_BAN,
+    FLAG_VIGENTE:     req.body.FLAG_VIGENTE
   }).save()
     .then(entity => {
       res.json({error: false, data: entity.toJSON()})
