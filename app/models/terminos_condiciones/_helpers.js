@@ -2,9 +2,12 @@ import multer from 'multer'
 import path from 'path'
 import fs from 'fs'
 
+// Cambiar ruta segun directorio actual.
+const filePath = 'E:/Projects/CITT/DelBarrioFront/DelBarrioFront-master/static/terms/'
+
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'public/')
+    cb(null, filePath)
   },
   filename: function (req, file, cb) {
     cb(null, new Date().getTime() + '.pdf')
@@ -25,7 +28,7 @@ const fileFilter = function (req, file, cb) {
 const upload = multer({ storage: storage, fileFilter: fileFilter }).single('TERMINOS_CONDICIONES')
 
 function renameOldFile () {
-  fs.rename('public/TERMINOS_CONDICIONES.pdf', 'public/TERMINOS_CONDICIONES_' + new Date().getTime() + '.pdf', err => {
+  fs.rename(filePath + 'TERMINOS_CONDICIONES.pdf', filePath + 'TERMINOS_CONDICIONES_' + new Date().getTime() + '.pdf', err => {
     if(err) {
       // Do nothing, file doesn't seems to exist
     }
@@ -33,7 +36,7 @@ function renameOldFile () {
 }
 
 function renameNewFile (file) {
-  fs.rename(file.path, 'public/TERMINOS_CONDICIONES.pdf', err => {
+  fs.rename(file.path, filePath + 'TERMINOS_CONDICIONES.pdf', err => {
     if(err) {
       // Do nothing, file doesn't seems to exist
     }
