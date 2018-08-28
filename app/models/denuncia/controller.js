@@ -21,7 +21,7 @@ function GET (req, res) {
         throw err
       })
   } else {
-    new Collection().fetch({withRelated: ['publicacion', 'calificacion', 'comentario', 'usuario', 'usuario.persona', 'usuario.emprendedor', 'motivo_denuncia', 'resolucion_denuncia', 'resolucion_denuncia.usuario', 'resolucion_denuncia.usuario.persona']})
+    new Collection().fetch({withRelated: ['publicacion','publicacion.emprendedor','publicacion.emprendedor.usuario','calificacion', 'comentario','comentario.publicacion','comentario.publicacion.emprendedor.usuario','calificacion.publicacion.emprendedor.usuario', 'usuario', 'usuario.persona', 'usuario.emprendedor', 'motivo_denuncia', 'resolucion_denuncia', 'resolucion_denuncia.usuario', 'resolucion_denuncia.usuario.persona']})
       .then(entities => {
         res.json({error: false, data: entities.toJSON()})
       }).catch(err => {
