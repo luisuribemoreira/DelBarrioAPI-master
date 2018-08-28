@@ -52,12 +52,13 @@ var corsOptions = {
 
 // MIDLEWARES
 // =============================================================================
+app.use(cors(corsOptions))
+app.use(express.static(path.join(__dirname, '/public')))
 app.use(logger())
 app.use(morgan('combined', {stream: accessLogStream} ))
 app.use(passport.initialize())
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
-// app.use(cors())
 
 // INCLUDE ROUTES - PRIVATE AND PUBLIC
 // =============================================================================
