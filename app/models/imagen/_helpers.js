@@ -17,7 +17,7 @@ function generateUUID () { // Public Domain/MIT
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'C:/Users/cetecom/Documents/GitHub/DelBarrioFront-master/static/img')
+    cb(null, 'public/img/')
   },
   filename: function (req, file, cb) {
     cb(null, generateUUID() + '.' + (/(?:\.([^.]+))?$/).exec(file.originalname)[1])

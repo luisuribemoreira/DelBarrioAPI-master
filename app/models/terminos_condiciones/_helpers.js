@@ -3,7 +3,7 @@ import path from 'path'
 import fs from 'fs'
 
 // Cambiar ruta segun directorio actual.
-const filePath = 'E:/Projects/CITT/DelBarrioFront/DelBarrioFront-master/static/terms/'
+const filePath = 'public/'
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
