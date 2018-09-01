@@ -152,6 +152,8 @@ exports.up = function (knex) {
       table.boolean('FLAG_VALIDADO').notNull().defaultTo(false)
       table.boolean('FLAG_BAN').notNull().defaultTo(false)
       table.dateTime('FECH_CREACION').notNull().defaultTo(knex.raw('now()'))
+      table.dateTime('FECH_APROBACION')
+      table.dateTime('FECH_RECHAZO')
 
       table.foreign('IDEN_EMPRENDEDOR').references('PER_EMPRENDEDORES.IDEN_EMPRENDEDOR').onDelete('CASCADE').onUpdate('CASCADE')
       table.foreign('IDEN_CATEGORIA').references('REQ_CATEGORIAS.IDEN_CATEGORIA').onDelete('CASCADE').onUpdate('CASCADE')
