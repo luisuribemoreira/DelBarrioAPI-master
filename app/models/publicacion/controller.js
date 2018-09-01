@@ -100,6 +100,8 @@ function GETAllHelper (ids = undefined, page = 1) {
  * @param {boolean} req.body.FLAG_VALIDADO - Define si la publicación ha sido aprobada por un administrador (opcional, por defecto false).
  * @param {boolean} req.body.FLAG_BAN - Define si la publicación está baneada (opcional, por defecto false).
  * @param {date} req.body.FECH_CREACION - Fecha de creación de la publicación (opcional, por defecto now()).
+ * @param {date} req.body.FECH_APROBACION - Fecha en que se aprobó la publicación (opcional, por defecto null)
+ * @param {date} req.body.FECH_RECHAZO - Fecha en que se rechazó la publicación (opcional, por defecto null)
  * @param {array} req.body.ETIQUETAS - Arreglo de strings que conformarán las etiquetas de la publicación (opcional).
  * @return {json} Publicación. En caso fallido, mensaje de error.
  */
@@ -116,7 +118,9 @@ function POST (req, res) {
     FLAG_VIGENTE:           req.body.FLAG_VIGENTE,
     FLAG_VALIDADO:          req.body.FLAG_VALIDADO,
     FLAG_BAN:               req.body.FLAG_BAN,
-    FECH_CREACION:          req.body.FECH_CREACION
+    FECH_CREACION:          req.body.FECH_CREACION,
+    FECH_APROBACION:        req.body.FECH_APROBACION,
+    FECH_RECHAZO:           req.body.FECH_RECHAZO
   }).save()
     .then(entity => {
       if(req.body.ETIQUETAS && Array.isArray(req.body.ETIQUETAS)) {
@@ -157,10 +161,15 @@ function POST (req, res) {
  * @param {boolean} req.body.FLAG_VALIDADO - Define si la publicación ha sido aprobada por un administrador (opcional).
  * @param {boolean} req.body.FLAG_BAN - Define si la publicación está baneada (opcional).
  * @param {date} req.body.FECH_CREACION - Fecha de creación de la publicación (opcional).
+ * @param {date} req.body.FECH_APROBACION - Fecha en que se aprobó la publicación (opcional, por defecto null)
+ * @param {date} req.body.FECH_RECHAZO - Fecha en que se rechazó la publicación (opcional, por defecto null)
  * @param {array} req.body.ETIQUETAS - Arreglo de strings que conformarán las etiquetas de la publicación (opcional).
  * @return {json} Mensaje de éxito o error.
  */
 function PUT (req, res) {
+  let aprobacion, rechazo
+  if ((typeof req.body.FECH_APROBACION !== 'undefined')) aprobacion = new Date()
+  if ((typeof req.body.FECH_RECHAZO !== 'undefined')) rechazo = new Date()
   new Model({IDEN_PUBLICACION: req.params.id})
     .fetch({require: true, withRelated: ['etiquetas']})
     .then(entity => {
@@ -176,7 +185,9 @@ function PUT (req, res) {
         FLAG_VIGENTE:           (typeof req.body.FLAG_VIGENTE === 'undefined') ? entity.get('FLAG_VIGENTE') : req.body.FLAG_VIGENTE,
         FLAG_VALIDADO:          (typeof req.body.FLAG_VALIDADO === 'undefined') ? entity.get('FLAG_VALIDADO') : req.body.FLAG_VALIDADO,
         FLAG_BAN:               (typeof req.body.FLAG_BAN === 'undefined') ? entity.get('FLAG_BAN') : req.body.FLAG_BAN,
-        FECH_CREACION:          (typeof req.body.FECH_CREACION === 'undefined') ? entity.get('FECH_CREACION') : req.body.FECH_CREACION
+        FECH_CREACION:          (typeof req.body.FECH_CREACION === 'undefined') ? entity.get('FECH_CREACION') : req.body.FECH_CREACION,
+        FECH_APROBACION:        (typeof req.body.FECH_APROBACION === 'undefined') ? entity.get('FECH_APROBACION') : aprobacion,
+        FECH_RECHAZO:           (typeof req.body.FECH_RECHAZO === 'undefined') ? entity.get('FECH_RECHAZO') : rechazo
       })
         .then(() => {
           if(req.body.ETIQUETAS && Array.isArray(req.body.ETIQUETAS)) {
