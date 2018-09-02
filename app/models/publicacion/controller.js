@@ -82,7 +82,7 @@ function GETAllHelper (ids = undefined, page = 1) {
   }
   
   return new Collection().orderBy('IDEN_PUBLICACION').fetchPage({page: page, pageSize: 18, withRelated: ['categoria', 'oferta', 'calificaciones', {'imagenes': query => {
-    query.orderBy('IDEN_IMAGEN')}}, {'comentarios': query => { query.orderBy('IDEN_COMENTARIO')}}, 'comentarios.respuesta'
+    query.orderBy('IDEN_IMAGEN')}}, {'comentarios': query => { query.orderBy('IDEN_COMENTARIO')}}, 'comentarios.respuesta', 'comentarios.usuario.emprendedor', 'comentarios.usuario.persona'
   ]})
 }
 
