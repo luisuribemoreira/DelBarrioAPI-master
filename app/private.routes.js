@@ -23,6 +23,7 @@ import routesDeshabilitacion from './models/deshabilitacion_cuenta/private.route
 
 import specificRoutes from './specific/private.routes'
 import emailRoute from './specific/emailer'
+import generatePDFRoute from './specific/pdfgenerator'
 
 const routes = [
   routesInicio,
@@ -48,7 +49,8 @@ const routes = [
   routesContacto,
   routesDeshabilitacion,
   specificRoutes,
-  emailRoute
+  emailRoute.app,
+  generatePDFRoute
 ]
 
 export default routes
