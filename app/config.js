@@ -47,9 +47,9 @@ switch (env) {
     POSTGRES_USER = 'root'
     POSTGRES_PASSWORD = '1234'
 
-    MAIL = ''
+    MAIL = 'delbarriotest@gmail.com'
     MAIL_NAME = ''
-    MAIL_PSW = ''
+    MAIL_PSW = 'delbarrio1234'
     MAIL_FROM = ''
     break
   default:
