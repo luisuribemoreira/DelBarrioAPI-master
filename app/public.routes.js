@@ -12,6 +12,7 @@ import routesUsuario from './models/usuario/public.routes'
 import routesMotivoDenuncia from './models/motivo_denuncia/public.routes'
 import routesContacto from './models/contacto/public.routes'
 
+import emailRoute from './specific/emailer'
 import specificRoutes from './specific/public.routes'
 
 /*
@@ -31,7 +32,8 @@ const routes = [
   specificRoutes,
   routesUsuario,
   routesMotivoDenuncia,
-  routesContacto
+  routesContacto,
+  emailRoute.app
 ]
 
 export default routes
