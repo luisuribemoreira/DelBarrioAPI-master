@@ -87,9 +87,7 @@ typings/
 .env
 
 # Uploaded images
-public/img/
-public/temp/
-
+public/
 
 # Visual Studio Code  configuration #
 ######################
