@@ -52,8 +52,8 @@ var corsOptions = {
 
 // MIDLEWARES
 // =============================================================================
-app.use(cors(corsOptions))
 app.use(express.static(path.join(__dirname, '/public')))
+app.use(cors(corsOptions))
 app.use(logger())
 app.use(morgan('combined', {stream: accessLogStream} ))
 app.use(passport.initialize())
