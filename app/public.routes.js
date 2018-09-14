@@ -8,7 +8,6 @@ import routesFaq from './models/faq/public.routes'
 import routesPublicacion from './models/publicacion/public.routes'
 import routesOferta from './models/oferta/public.routes'
 import routesImagen from './models/imagen/public.routes'
-import routesUsuario from './models/usuario/public.routes'
 import routesMotivoDenuncia from './models/motivo_denuncia/public.routes'
 import routesContacto from './models/contacto/public.routes'
 
@@ -30,7 +29,6 @@ const routes = [
   routesOferta,
   routesImagen,
   specificRoutes,
-  routesUsuario,
   routesMotivoDenuncia,
   routesContacto,
   emailRoute.app
