@@ -10,7 +10,7 @@ import routesOferta from './models/oferta/public.routes'
 import routesImagen from './models/imagen/public.routes'
 import routesMotivoDenuncia from './models/motivo_denuncia/public.routes'
 import routesContacto from './models/contacto/public.routes'
-
+import routesUsuario from './models/usuario/public.routes'
 import emailRoute from './specific/emailer'
 import specificRoutes from './specific/public.routes'
 
@@ -31,6 +31,7 @@ const routes = [
   specificRoutes,
   routesMotivoDenuncia,
   routesContacto,
+  routesUsuario,
   emailRoute.app
 ]
 
