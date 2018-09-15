@@ -1,5 +1,6 @@
 import { Model, Collection } from './model'
 import Checkit from 'checkit'
+import moment from 'moment'
 
 /**
  * Obtener ofertas.
@@ -43,6 +44,8 @@ function GET (req, res) {
  * @return {json} Oferta. En caso fallido, mensaje de error.
  */
 function POST (req, res) {
+  let now = moment().format('DD-MM-YYYY')
+  let inicio = moment(req.body.FECH_INICIO).format('DD-MM-YYYY')
   new Model({
     IDEN_PUBLICACION: req.body.IDEN_PUBLICACION,
     FECH_INICIO:      req.body.FECH_INICIO,
@@ -50,7 +53,7 @@ function POST (req, res) {
     NUMR_PRECIO:      req.body.NUMR_PRECIO,
     FLAG_VALIDADO:    req.body.FLAG_VALIDADO,
     FLAG_BAN:         req.body.FLAG_BAN,
-    FLAG_VIGENTE:     req.body.FLAG_VIGENTE
+    FLAG_VIGENTE:     req.body.FLAG_VIGENTE ? req.body.FLAG_VIGENTE : moment(now, 'DD-MM-YYYY').isSame(moment(inicio, 'DD-MM-YYYY'))
   }).save()
     .then(entity => {
       res.json({error: false, data: entity.toJSON()})
