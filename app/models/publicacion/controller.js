@@ -14,7 +14,7 @@ function GET (req, res) {
     new Model({IDEN_PUBLICACION: id}).fetch({withRelated: [
       'emprendedor',
       'emprendedor.rubro',
-      'emprendedor.usuario.telefonos',
+      'emprendedor.usuario.persona',
       'etiquetas',
       'categoria',
       'imagenes',
