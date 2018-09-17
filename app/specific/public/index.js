@@ -3,7 +3,7 @@ import { Collection as Publicaciones } from '../../models/publicacion/model'
 import { Collection as Emprendedores } from '../../models/emprendedor/model'
 
 function GET (req, res) {
-  new Publicaciones().orderBy('IDEN_PUBLICACION').fetch({withRelated: ['categoria', 'oferta', 'calificaciones', {'imagenes': query => {
+  new Publicaciones().orderBy('IDEN_PUBLICACION').fetch({withRelated: ['categoria', 'oferta', 'emprendedor.usuario', 'calificaciones', {'imagenes': query => {
     query.orderBy('IDEN_IMAGEN')
   }}
   ]}).then(publicaciones => {
