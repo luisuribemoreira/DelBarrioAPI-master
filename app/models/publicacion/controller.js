@@ -25,7 +25,9 @@ function GET (req, res) {
       {'comentarios': query => {
         query.orderBy('IDEN_COMENTARIO', 'desc')
       }},
-      'comentarios.respuesta']})
+      'comentarios.respuesta',
+      'calificaciones.usuario',
+      'comentarios.usuario']})
       .then(entity => {
         if(!entity) {
           res.status(404).json({error: true, data: {message: 'Entity not found'}})
