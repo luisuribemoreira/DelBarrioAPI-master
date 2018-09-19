@@ -33,8 +33,18 @@ function GET (req, res) {
           res.status(404).json({error: true, data: {message: 'Entity not found'}})
         } else {
           let jsonEntity = entity.toJSON()
-                jsonEntity.NUMR_CALIFICACION = 
-                jsonEntity.calificaciones.length >= 5 ? _.meanBy(jsonEntity.calificaciones, e => { if (!e.flag_ban) return e.NUMR_VALOR }) : 0
+          jsonEntity.NUMR_CALIFICACION = 0
+          if (jsonEntity.calificaciones.length >= 5) {
+            let counter = 0
+            let total = 0
+            jsonEntity.calificaciones.forEach(e => {
+              if (!e.FLAG_BAN && !e.usuario.FLAG_BAN) {
+                total += e.NUMR_VALOR
+                counter++
+              }
+            })
+            jsonEntity.NUMR_CALIFICACION = Number(total / counter)
+          }
           res.json({error: false, data: jsonEntity})
           // Incrementar contador
           new Model({IDEN_PUBLICACION: entity.attributes.IDEN_PUBLICACION})
