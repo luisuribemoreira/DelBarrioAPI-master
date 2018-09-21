@@ -11,9 +11,9 @@ cron.schedule('0 0 0 * * *', function(){
     .then(entities => {
       let ofertas = entities.toJSON()
       ofertas.forEach(oferta => {
-        let FECH_TERMINO = moment(oferta.FECH_TERMINO).format('DD-MM-YYYY')
-        let fechaActual = moment().format('DD-MM-YYYY')
-        if (fechaActual > FECH_TERMINO) {
+        let FECH_TERMINO = moment(oferta.FECH_TERMINO).format('YYYY-MM-DD')
+        let fechaActual = moment().format('YYYY-MM-DD')
+        if (moment(fechaActual).isAfter(FECH_TERMINO) && oferta.FLAG_VIGENTE) {
           new Ofertas.Model({IDEN_OFERTA: oferta.IDEN_OFERTA}).fetch({require: true})
             .then(entity => {
               entity.save({
@@ -43,9 +43,9 @@ cron.schedule('0 0 0 * * *', function(){
     .then(entities => {
       let ofertas = entities.toJSON()
       ofertas.forEach(oferta => {
-        let fechaActual = moment().format('DD-MM-YYYY')
-        let FECH_INICIO = moment(oferta.FECH_INICIO).format('DD-MM-YYYY')
-        if (fechaActual === FECH_INICIO) {
+        let fechaActual = moment().format('YYYY-MM-DD')
+        let FECH_INICIO = moment(oferta.FECH_INICIO).format('YYYY-MM-DD')
+        if (moment(fechaActual).isSame(FECH_INICIO) && !oferta.FLAG_VIGENTE) {
           new Ofertas.Model({IDEN_OFERTA: oferta.IDEN_OFERTA}).fetch({require: true})
             .then(entity => {
               entity.save({
