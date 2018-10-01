@@ -10,7 +10,7 @@ import moment from 'moment'
 function GET (req, res) {
   const id = (typeof req.params.id === 'undefined' || isNaN(req.params.id) ) ? 0 : parseInt(req.params.id)
   if(id != 0) {
-    new Model({IDEN_OFERTA: id}).fetch({withRelated: ['publicacion','publicacion.categoria']})
+    new Model({IDEN_OFERTA: id}).fetch({withRelated: ['publicacion','publicacion.categoria','publicacion.imagenes']})
       .then(entity => {
         if(!entity) {
           res.status(404).json({error: true, data: {message: 'Entity not found'}})
@@ -22,7 +22,7 @@ function GET (req, res) {
         throw err
       })
   } else {
-    new Collection().fetch({withRelated: ['publicacion','publicacion.categoria']})
+    new Collection().fetch({withRelated: ['publicacion','publicacion.categoria','publicacion.imagenes']})
       .then(entities => {
         res.json({error: false, data: entities.toJSON()})
       }).catch(err => {
