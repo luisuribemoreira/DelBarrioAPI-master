@@ -16,7 +16,7 @@ function generatePDF (req, res) {
       filename: items.fileName,
       path: 'public/'+items.fileURL
     }
-    emailer.sendWithAttachment(options)
+    emailer.sendWithAttachment(options, req, res)
   } catch (err) {
     res.status(500).send({error: true, data: { message: 'Internal Error'}})
   }

@@ -29,7 +29,7 @@ function send (req, res) {
   })
 }
 
-function sendWithAttachment(options) {
+function sendWithAttachment(options, req, res) {
   transporter.sendMail({
     from: 'delbarriotest@gmail.com',
     to: options.to,
@@ -43,9 +43,9 @@ function sendWithAttachment(options) {
     ]
   }, (errors, info) => {
     if (errors) {
-      console.log(errors)
+      res.status(500).json({error: true, data: {message: 'Internal error', error: errors}})
     } else {
-      console.log(info)
+      res.json({error: false, data: info})
     }
   })
 }
