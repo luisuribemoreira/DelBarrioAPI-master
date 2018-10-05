@@ -18,7 +18,7 @@ const Model = bookshelf.Model.extend({
     return this.hasMany(require('../imagen/model').Model, 'IDEN_PUBLICACION')
   },
   oferta: function () {
-    return this.hasOne(require('../oferta/model').Model, 'IDEN_PUBLICACION')
+    return this.hasMany(require('../oferta/model').Model, 'IDEN_PUBLICACION')
   },
   comentarios: function () {
     return this.hasMany(require('../comentario/model').Model, 'IDEN_PUBLICACION')

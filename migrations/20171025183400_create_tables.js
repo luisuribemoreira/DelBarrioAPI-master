@@ -175,7 +175,7 @@ exports.up = function (knex) {
   function createReqOfertas () {
     return knex.schema.createTableIfNotExists('REQ_OFERTAS', table => {
       table.increments('IDEN_OFERTA').unsigned().primary()
-      table.integer('IDEN_PUBLICACION').unsigned().unique()
+      table.integer('IDEN_PUBLICACION').unsigned()
       table.dateTime('FECH_INICIO').notNull()
       table.dateTime('FECH_TERMINO').notNull()
       table.integer('NUMR_PRECIO').unsigned().notNull()
