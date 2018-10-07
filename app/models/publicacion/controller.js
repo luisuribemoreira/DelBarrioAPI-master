@@ -84,16 +84,15 @@ function GET (req, res) {
 /**
  * Retorna instancia de colección
  * @param {...number} ids Arreglo con ID's de publicación (opcional)
- * @param {number} page Número de página a obtener (opcional)
  */
-function GETAllHelper (ids = undefined, page = 1) {
+function GETAllHelper (ids = undefined) {
   if(ids) {
     return new Model().query(q => { q.where('IDEN_PUBLICACION', 'in', ids) }).orderBy('IDEN_PUBLICACION', 'desc').fetchPage({page: page, pageSize: 18, withRelated: ['categoria', 'oferta', 'emprendedor.usuario','calificaciones', 
     {'comentarios': query => { query.orderBy('IDEN_COMENTARIO')}} ,{'imagenes': query => {query.orderBy('IDEN_IMAGEN')}}, 'comentarios.respuesta'
     ]})
   }
   
-  return new Collection().orderBy('IDEN_PUBLICACION').fetchPage({page: page, pageSize: 18, withRelated: ['categoria', 'emprendedor.usuario','oferta', 'calificaciones', {'imagenes': query => {
+  return new Collection().orderBy('IDEN_PUBLICACION').fetch({withRelated: ['categoria', 'emprendedor.usuario','oferta', 'calificaciones', {'imagenes': query => {
     query.orderBy('IDEN_IMAGEN')}}, {'comentarios': query => { query.orderBy('IDEN_COMENTARIO')}}, 'comentarios.respuesta', 'comentarios.usuario.emprendedor', 'comentarios.usuario.persona'
   ]})
 }
