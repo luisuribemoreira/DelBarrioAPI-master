@@ -14,7 +14,7 @@ function GET (req, res) {
         if(!entity) {
           res.status(404).json({error: true, data: {message: 'Entity not found'}})
         } else {
-          res.json({error: false, data: filter.GETsingle(entity)})
+          res.json({error: false, data: entity.toJSON()})
         }
       }).catch(err => {
         res.status(500).json({error: true, data: {message: 'Internal error'}})
