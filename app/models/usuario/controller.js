@@ -84,7 +84,11 @@ function PUT (req, res) {
         .then(() => {
           res.json({error: false, data: {message: 'Entity successfully updated'}})
         }).catch(Checkit.Error, err => {
-          res.status(400).json({error: true, data: err})
+          if (typeof entity.attributes.EMAIL_USUARIO !== 'undefined'){
+            res.status(500).json({error: true, data: err.errors.EMAIL_USUARIO.message})
+          } else {
+            res.status(400).json({error: true, data: err})
+          }
         }).catch(err => {
           res.status(500).json({error: true, data: {message: 'Internal error'}})
           throw err
