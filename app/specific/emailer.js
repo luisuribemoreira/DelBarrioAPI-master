@@ -31,7 +31,7 @@ function send (req, res) {
 
 function sendWithAttachment(options, req, res) {
   transporter.sendMail({
-    from: 'delbarriotest@gmail.com',
+    from: config.mail,
     to: options.to,
     subject: options.subject,
     text: options.text,
