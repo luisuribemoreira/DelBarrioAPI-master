@@ -14,7 +14,7 @@ const validations = {
     rule: 'required',
     label: labels.NOMB_CATEGORIA
   }, {
-    rule: 'minLength:5',
+    rule: 'minLength:4',
     label: labels.NOMB_CATEGORIA
   }, {
     rule: 'maxLength:50',
