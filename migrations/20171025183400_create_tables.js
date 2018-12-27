@@ -60,7 +60,9 @@ exports.up = function (knex) {
       table.string('DESC_PASSWORD').notNull()
       table.boolean('FLAG_VIGENTE').notNull().defaultTo(true)
       table.boolean('FLAG_BAN').notNull().defaultTo(false)
-      table.dateTime('FECH_CREACION')
+      table.dateTime('FECH_CREACION'),
+      table.string('RESET_PASSWORD_TOKEN'),
+      table.datetime('RESET_PASSWORD_EXPIRES')
     
       table.foreign('IDEN_ROL').references('SIS_ROLES.IDEN_ROL').onDelete('CASCADE').onUpdate('CASCADE')
     })

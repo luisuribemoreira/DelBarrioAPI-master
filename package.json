@@ -35,6 +35,7 @@
     "bookshelf": "^0.10.4",
     "checkit": "^0.7.0",
     "cors": "^2.8.4",
+    "crypto": "^1.0.1",
     "express": "^4.15.3",
     "fs": "^0.0.1-security",
     "install": "^0.10.1",

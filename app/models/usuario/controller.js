@@ -48,7 +48,9 @@ function POST (req, res) {
     DESC_PASSWORD:  req.body.DESC_PASSWORD,
     FLAG_VIGENTE:   req.body.FLAG_VIGENTE,
     FLAG_BAN:       req.body.FLAG_BAN,
-    FECH_CREACION:  req.body.FECH_CREACION === 1 ? new Date() : null
+    FECH_CREACION:  req.body.FECH_CREACION === 1 ? new Date() : null,
+    RESET_PASSWORD_TOKEN : null,
+    RESET_PASSWORD_EXPIRES: null
   }).save()
     .then(entity => {
       res.json({error: false, data: entity.toJSON()})
