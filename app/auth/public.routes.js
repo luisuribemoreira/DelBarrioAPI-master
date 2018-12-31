@@ -8,10 +8,8 @@ app.route('/auth')
 app.route('/forgot-pass')
   .post   ((req, res) => controller.forgotPassword(req, res))
 app.route('/reset-pass/:token')
-  .get   ((req, res) => controller.getResetPassword(req, res))
-  app.route('/reset-pass/:token')
-  .post   ((req, res) => controller.postResetPassword(req, res))
-
+  .get   ((req, res) => controller.GETResetPassword(req, res))
+  .put   ((req, res) => controller.PUTResetPassword(req, res))
 
 
 export default app
