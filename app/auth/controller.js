@@ -139,7 +139,7 @@ function PUTResetPassword (req, res) {
           throw err
         })
       } else {
-        res.status(401).json({error: true, data: {message: 'Token expirado, vuelva a enviar la solicitud'}})
+        res.status(401).json({error: true, data: {message: 'Token expirado, por favor vuelva a enviar la solicitud'}})
       }
     }  else {
       res.status(404).json({error: true, data: {message: 'Usuario no encontrado'}})
