@@ -126,7 +126,6 @@ exports.seed = function (knex) {
                 {IDEN_ROL: roles.find(rol => rol.CODI_ROL === 103).IDEN_ROL, IDEN_PERMISO: permisos.find(permiso => permiso.CODI_PERMISO === 221).IDEN_PERMISO},
                 {IDEN_ROL: roles.find(rol => rol.CODI_ROL === 103).IDEN_ROL, IDEN_PERMISO: permisos.find(permiso => permiso.CODI_PERMISO === 223).IDEN_PERMISO},
                 {IDEN_ROL: roles.find(rol => rol.CODI_ROL === 103).IDEN_ROL, IDEN_PERMISO: permisos.find(permiso => permiso.CODI_PERMISO === 225).IDEN_PERMISO},
-                {IDEN_ROL: roles.find(rol => rol.CODI_ROL === 103).IDEN_ROL, IDEN_PERMISO: permisos.find(permiso => permiso.CODI_PERMISO === 227).IDEN_PERMISO},
 
                 // Administradores - Eliminar
                 {IDEN_ROL: roles.find(rol => rol.CODI_ROL === 103).IDEN_ROL, IDEN_PERMISO: permisos.find(permiso => permiso.CODI_PERMISO === 301).IDEN_PERMISO},
@@ -157,11 +156,13 @@ exports.seed = function (knex) {
                 {IDEN_ROL: roles.find(rol => rol.CODI_ROL === 104).IDEN_ROL, IDEN_PERMISO: permisos.find(permiso => permiso.CODI_PERMISO === 221).IDEN_PERMISO},
                 {IDEN_ROL: roles.find(rol => rol.CODI_ROL === 104).IDEN_ROL, IDEN_PERMISO: permisos.find(permiso => permiso.CODI_PERMISO === 223).IDEN_PERMISO},
                 {IDEN_ROL: roles.find(rol => rol.CODI_ROL === 104).IDEN_ROL, IDEN_PERMISO: permisos.find(permiso => permiso.CODI_PERMISO === 225).IDEN_PERMISO},
-                {IDEN_ROL: roles.find(rol => rol.CODI_ROL === 104).IDEN_ROL, IDEN_PERMISO: permisos.find(permiso => permiso.CODI_PERMISO === 227).IDEN_PERMISO},
                 // Super Administradores - Eliminar
                 {IDEN_ROL: roles.find(rol => rol.CODI_ROL === 104).IDEN_ROL, IDEN_PERMISO: permisos.find(permiso => permiso.CODI_PERMISO === 301).IDEN_PERMISO},
                 {IDEN_ROL: roles.find(rol => rol.CODI_ROL === 104).IDEN_ROL, IDEN_PERMISO: permisos.find(permiso => permiso.CODI_PERMISO === 302).IDEN_PERMISO},
                 {IDEN_ROL: roles.find(rol => rol.CODI_ROL === 104).IDEN_ROL, IDEN_PERMISO: permisos.find(permiso => permiso.CODI_PERMISO === 303).IDEN_PERMISO},
+                // Adminsitrador y Super Administrador Agregar Terminos y Condiciones
+                {IDEN_ROL: roles.find(rol => rol.CODI_ROL === 103).IDEN_ROL, IDEN_PERMISO: permisos.find(permiso => permiso.CODI_PERMISO === 227).IDEN_PERMISO},
+                {IDEN_ROL: roles.find(rol => rol.CODI_ROL === 104).IDEN_ROL, IDEN_PERMISO: permisos.find(permiso => permiso.CODI_PERMISO === 227).IDEN_PERMISO}
               ])
             })
         })
