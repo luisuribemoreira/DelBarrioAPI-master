@@ -1,18 +1,19 @@
-import _ from 'lodash'
 
-// middleware for doing role-based permissions
-function permit (...allowed) {
-  // const isAllowed = permisos => _.intersection(permisos, allowed).length > 0
-
-  // return a middleware
+// middleware para evaluar si un usuario tiene el permiso en las diferentes rutas de la aplicación
+function permit (allowed) {
+  // Se declara un arreglo vacio para guardar los codigos de los permisos que mantiene el usuario
+    const arrayPermisos = []
+  // retorna un middleware
   return (req, res, next) => {
-    // Bypass por ahora
-    next()
-    // if (req.user && req.user.permisos && isAllowed(req.user.permisos))
-    //   next() // role is allowed, so continue on the next middleware
-    // else {
-    //   res.status(403).json({ error: true, data: { message: 'Forbidden' } })
-    // }
+    // Se crea un arreglo nuevo solo con los codigos de los permisos que mantiene el usuario logueado
+    req.user.rol.permisos.forEach(element => {
+      arrayPermisos.push(element.CODI_PERMISO)
+    });
+     if (req.user && arrayPermisos.includes(allowed))
+       next() // Si el codigo del permiso lo mantiene el usuario pasa al siguiente middleware
+     else {
+       res.status(403).json({ error: true, data: { message: 'Forbidden' } })
+     }
   }
 }
 
