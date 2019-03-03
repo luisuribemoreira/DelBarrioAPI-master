@@ -50,6 +50,7 @@ exports.seed = function (knex) {
         {CODI_PERMISO: 224, NOMB_PERMISO: 'Agregar deshabilitaciones de cuenta'},
         {CODI_PERMISO: 225, NOMB_PERMISO: 'Agregar emprendedor'},
         {CODI_PERMISO: 226, NOMB_PERMISO: 'Administrar imágenes propias'},
+        {CODI_PERMISO: 227, NOMB_PERMISO: 'Administrar términos y condiciones'},
         // CODI_PERMISO 3xx : Eliminar
         {CODI_PERMISO: 301, NOMB_PERMISO: 'Eliminar FAQs'},
         {CODI_PERMISO: 302, NOMB_PERMISO: 'Eliminar imágenes'},
@@ -125,6 +126,8 @@ exports.seed = function (knex) {
                 {IDEN_ROL: roles.find(rol => rol.CODI_ROL === 103).IDEN_ROL, IDEN_PERMISO: permisos.find(permiso => permiso.CODI_PERMISO === 221).IDEN_PERMISO},
                 {IDEN_ROL: roles.find(rol => rol.CODI_ROL === 103).IDEN_ROL, IDEN_PERMISO: permisos.find(permiso => permiso.CODI_PERMISO === 223).IDEN_PERMISO},
                 {IDEN_ROL: roles.find(rol => rol.CODI_ROL === 103).IDEN_ROL, IDEN_PERMISO: permisos.find(permiso => permiso.CODI_PERMISO === 225).IDEN_PERMISO},
+                {IDEN_ROL: roles.find(rol => rol.CODI_ROL === 103).IDEN_ROL, IDEN_PERMISO: permisos.find(permiso => permiso.CODI_PERMISO === 227).IDEN_PERMISO},
+
                 // Administradores - Eliminar
                 {IDEN_ROL: roles.find(rol => rol.CODI_ROL === 103).IDEN_ROL, IDEN_PERMISO: permisos.find(permiso => permiso.CODI_PERMISO === 301).IDEN_PERMISO},
                 {IDEN_ROL: roles.find(rol => rol.CODI_ROL === 103).IDEN_ROL, IDEN_PERMISO: permisos.find(permiso => permiso.CODI_PERMISO === 302).IDEN_PERMISO},
@@ -154,6 +157,7 @@ exports.seed = function (knex) {
                 {IDEN_ROL: roles.find(rol => rol.CODI_ROL === 104).IDEN_ROL, IDEN_PERMISO: permisos.find(permiso => permiso.CODI_PERMISO === 221).IDEN_PERMISO},
                 {IDEN_ROL: roles.find(rol => rol.CODI_ROL === 104).IDEN_ROL, IDEN_PERMISO: permisos.find(permiso => permiso.CODI_PERMISO === 223).IDEN_PERMISO},
                 {IDEN_ROL: roles.find(rol => rol.CODI_ROL === 104).IDEN_ROL, IDEN_PERMISO: permisos.find(permiso => permiso.CODI_PERMISO === 225).IDEN_PERMISO},
+                {IDEN_ROL: roles.find(rol => rol.CODI_ROL === 104).IDEN_ROL, IDEN_PERMISO: permisos.find(permiso => permiso.CODI_PERMISO === 227).IDEN_PERMISO},
                 // Super Administradores - Eliminar
                 {IDEN_ROL: roles.find(rol => rol.CODI_ROL === 104).IDEN_ROL, IDEN_PERMISO: permisos.find(permiso => permiso.CODI_PERMISO === 301).IDEN_PERMISO},
                 {IDEN_ROL: roles.find(rol => rol.CODI_ROL === 104).IDEN_ROL, IDEN_PERMISO: permisos.find(permiso => permiso.CODI_PERMISO === 302).IDEN_PERMISO},
